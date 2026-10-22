@@ -1,0 +1,21 @@
+name: 域名到期监控
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # 每天北京时间 8:00 运行
+  workflow_dispatch:     # 允许手动点一下运行
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 运行检测
+        run: python check.py
+        env:
+          MAIL_SENDER: ${{ secrets.MAIL_SENDER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          DOMAINS_DATA: ${{ secrets.DOMAINS_DATA }}

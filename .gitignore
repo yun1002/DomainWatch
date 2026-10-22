@@ -1,0 +1,10 @@
+# 工具/运行时生成文件
+.workbuddy-ai/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# 本地环境变量（切勿提交真实邮箱密码）
+.env
+.env.*
